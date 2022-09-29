@@ -1,6 +1,7 @@
 package camel
 
 import (
+	"strings"
 	"unicode"
 )
 
@@ -33,6 +34,9 @@ func Strip(s string) string {
 		}
 		res = res + string(unicode.ToLower(ch))
 		lastKind = kind
+	}
+	for strings.Contains(res, "__") {
+		res = strings.ReplaceAll(res, "__", "_")
 	}
 	return res
 }
